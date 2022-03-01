@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography;
 using TMPro;
 using UnityEngine;
 
@@ -22,6 +18,9 @@ public class Game : MonoBehaviour
     public TextMeshProUGUI worldUI;
     public TextMeshProUGUI levelUI;
     public TextMeshProUGUI timeUI;
+
+    public GameObject flag;
+    public bool touchedflag = false;
     
     private float accumulatedTime = 0f;
 
@@ -88,5 +87,17 @@ public class Game : MonoBehaviour
             }
         }
         // --------------------------------------------------
+        if ((time == 0) && (touchedflag == false))
+        {
+            Debug.Log("You lose.");
+        }
+    }
+    
+    void OnTriggerEnter(Collider collider)
+    {
+        if (this.name == "Flag" && time > 0)
+        {
+            touchedflag = true;
+        }
     }
 }
